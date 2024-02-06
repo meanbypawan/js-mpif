@@ -1,0 +1,23 @@
+<script>
+    // DRY (Do not repeat yourself)
+    // KISS (Keep it Simple & Short)
+    var bs = prompt("Enter Basic Salary") * 1;
+    var hra, ta, da, gs;
+    if (bs >= 10000) {
+        hra = (bs * 10) / 100;
+        ta = (bs * 5) / 100;
+        da = (bs * 3) / 100;
+        gs = bs + hra + ta + da;
+    }
+    else {
+        hra = (bs * 5) / 100;
+        ta = (bs * 3) / 100;
+        gs = bs + hra + ta;
+    }
+    document.write("<br>HRA : " + hra);
+    document.write("<br>TA : " + ta);
+    da && document.write("<br>DA : " + da);
+    document.write("<br>Gross Salary : " + gs);
+
+
+</script>

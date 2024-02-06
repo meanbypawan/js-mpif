@@ -1,0 +1,13 @@
+<script>
+    var n = BigInt(1n);
+    switch(n){
+        case 1: document.write("Matched...");break;
+        case true: document.write("Boolean Matched...");break;
+        case "A": document.write("String Matched...");break;
+        case null:document.write("Null Matched...");break;
+        case undefined: document.write("Undefined Matched...");break;
+        case NaN: document.write("NaN Matched...");break;
+        case 1n: document.write("Big Int Matched...");break;
+        default: document.write("Not Matched....");
+    }
+</script>
