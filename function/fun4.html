@@ -1,0 +1,26 @@
+<script>
+    function f1(a,b,callback){
+       document.write("<br>Inside f1");
+       document.write("<br> a : "+a);
+       document.write("<br> b : "+b);
+       callback();
+    }
+
+    var a = 10;
+    var b = "A";
+    var c = function(){
+        document.write("<br>callback function executed....");
+    };
+
+    f1(a,b,c);
+    /*
+      Callback Function :- Callback is a function which passed as a argument 
+      to another function
+
+      And Function which receives another function as a argument is called
+      Higher Order Function
+    */
+</script>
+
+
+

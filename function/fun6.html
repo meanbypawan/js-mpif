@@ -1,0 +1,21 @@
+<script>
+    /*
+      Callback :-
+       a. Callback Function
+       b. Error Callback
+       c. Callback Hell  
+    */
+
+   var add = (a,b,callback)=>{
+      if(typeof(a) != 'number' || typeof(b)!= 'number')
+        callback(new Error("Not a Integer"));
+      else{
+        var result =  a + b;
+        callback(null,result);
+      }
+   }
+
+   add(20,'10',(err,result)=>{
+    err ? document.write(err) : document.write(result);
+   });
+</script>

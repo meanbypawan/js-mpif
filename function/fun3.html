@@ -1,0 +1,13 @@
+<script>
+    f1();
+
+    function f1(){ // Function statement : It is hoisted by default
+        document.write("<br>F1 executed...");
+    }
+
+
+    f2();
+    var f2 = ()=>{ // Expression it is not hoisted
+        document.write("<br>F2 executed.....");
+    }
+</script>
