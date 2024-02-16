@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"/>
+        <style>
+            small{
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="container mt-3"> 
+        <form onsubmit="return validateForm()">
+            <div class="form-group">
+                <input onkeyup="validateUsername()" id="username" placeholder="Enter username" type="text" class="form-control"/>
+                <small id="usernameError"></small>
+            </div>
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <input onkeyup="validatePassword()" id="password" type="password" class="form-control" placeholder="Enter password">
+                    <div class="input-group-append">
+                      <span onclick="togglePassword()" id="togglePassword" class="input-group-text">Show</span>
+                    </div>
+                </div>
+                <small id="passwordError"></small>
+                
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Sign up</button>
+            </div>
+        </form>
+       </div> 
+       <script>
+          function togglePassword(){
+            var spanObj = document.getElementById("togglePassword");
+            var passwordObj = document.getElementById("password");
+            if(spanObj.innerText == "Show"){
+               passwordObj.type = "text";
+               spanObj.innerText = "Hide";
+            }
+            else{
+               passwordObj.type = "password";
+               spanObj.innerText = "Show";
+            }
+          }
+          function validatePassword(){
+            var status = true;
+            var password = document.getElementById("password").value;
+            var passwordError = document.getElementById("passwordError");
+            if(password.length == 0){
+                status = false;
+                passwordError.innerHTML = "password is required";
+            }
+            else if(password.length < 6 || password.length > 10){
+                status = false;
+                passwordError.innerHTML = "password must be between 6 to 10 letter";
+            }
+            else
+             passwordError.innerHTML = "";
+            return status;
+          }
+          function validateUsername(){
+            var status = true;
+            var username = document.getElementById("username").value;
+            var usernameError = document.getElementById("usernameError");
+            if(username.length == 0){
+                status = false;
+                usernameError.innerHTML = "username is required";
+            }
+            else
+              usernameError.innerHTML = "";
+            return status;
+          }
+          function validateForm(){
+            var usernameStatus = validateUsername();
+            var passwordStatus = validatePassword();
+            if(usernameStatus && passwordStatus)
+              return true;
+            return false;  
+          }
+       </script>
+    </body>
+</html>
+
+
+
+

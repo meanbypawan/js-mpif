@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <input onkeyup="calculate()" type="text" id="first" />
+        <input onkeyup="calculate()" type="text" id="second"/>
+        <input onkeyup="calculate()" type="text" id="third" />
+        <br><br><br>
+        <p id="result"></p>
+        <script>
+            function calculate(){
+                var firstValue = document.getElementById("first").value*1;
+                var secondValue = document.getElementById("second").value*1;
+                var thirdValue = document.getElementById("third").value*1;
+
+                var result = parseFloat(firstValue) + parseFloat(secondValue) + parseFloat(thirdValue);
+
+                document.getElementById("result").innerHTML = "Result : "+result;
+            }
+        </script>
+    </body>
+</html>

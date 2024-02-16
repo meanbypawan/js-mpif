@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <center>
+            <img id="main" src="images/crocs.png" width="350" height="350"/>
+            <br><br><br>
+            <img onclick="changeImage('first')" id="first" src="images/bata-shoes1.jpeg" width="100" height="100"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <img onclick="changeImage('second')" id="second" src="images/batablackred.jpeg" width="100" height="100"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <img onclick="changeImage('third')" id="third" src="images/adidas.png" width="100" height="100"/>&nbsp;&nbsp;&nbsp;&nbsp;
+        </center>
+        <script>
+            function changeImage(currentImageId){
+               var mainImage = document.getElementById("main");
+               var currentImage = document.getElementById(currentImageId);
+
+               var temp = mainImage.src;
+               mainImage.src = currentImage.src;
+               currentImage.src = temp;
+            }
+        </script>
+    </body>
+</html>

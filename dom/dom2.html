@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <center>
+            <img  id="main" src="images/crocs.png" width="100px" height="100px"/>
+            <br><br>
+            <button onclick="incrementSize()">+</button>
+            <button onclick="decrementSize()">-</button>
+        </center>
+
+        <script>
+            function incrementSize(){
+              var mainImage = document.getElementById("main");
+              mainImage.width = mainImage.width*1 + 20;
+              mainImage.height = mainImage.height*1 + 20;
+            }
+            function decrementSize(){
+              var mainImage = document.getElementById("main");
+              mainImage.width = mainImage.width*1 - 20;
+              mainImage.height = mainImage.height*1 - 20;
+            }
+        </script>
+    </body>
+</html>
