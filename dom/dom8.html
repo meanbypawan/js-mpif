@@ -26,11 +26,101 @@
                 
             </div>
             <div class="form-group">
+              <input onkeyup="validateMobile()" id="mobile" type="text" placeholder="Enter mobile number" class="form-control"/>
+              <small id="mobileError"></small> 
+            </div>
+            <div class="form-group">
+              Male <input onchange="validateGender()" type="radio" name="gender" id="rdMale"/>
+              Female <input onchange = "validateGender()" type="radio" name="gender" id="rdFemale"/>
+              <br>
+              <small id="genderError"></small>
+            </div>
+            <div class="form-group">
+              <select id="qualification" class="form-control" onchange="validateQualification()">
+                 <option value="0">select qualification</option>
+                 <option value="DR">Doctorate</option>
+                 <option value="PG">Post graduate</option>
+                 <option value="UG">Under graduate</option>
+              </select>
+              <small id="qualificationError"></small>
+            </div>
+            <div class="form-group">
+              <input onchange="validateProfile()" type="file" id="profile"/><br>
+              <small id="profileError"></small>
+            </div>
+            <div class="form-group">
                 <button type="submit" class="btn btn-success">Sign up</button>
             </div>
         </form>
        </div> 
        <script>
+          function validateProfile(){
+            var status = true;
+            var fileObj = document.getElementById("profile");
+            var profileError = document.getElementById("profileError");
+            if(!fileObj.files[0]){
+               status = false;
+               profileError.innerHTML  = "please upload profile pic";
+            }
+            else{
+              var filename = fileObj.files[0].name;
+              var dotIndex = filename.lastIndexOf(".");
+              var fileExtension = filename.slice(dotIndex);
+              if(fileExtension != '.png'){
+                 status = false;
+                 profileError.innerHTML = "only png is allowed";
+              }
+              else
+                profileError.innerHTML = "";
+            }
+            return status;
+          }
+          function validateQualification(){
+            var status = true;
+            var qualification = document.getElementById("qualification").value;
+            var qualificationError = document.getElementById("qualificationError");
+            if(qualification == "0"){
+              status = false;
+              qualificationError.innerHTML = "please select qualification";
+            }
+            else
+             qualificationError.innerHTML = "";
+            return status;
+          }
+          function validateGender(){
+            var status = true;
+            var rdMale = document.getElementById("rdMale").checked;
+            var rdFemale = document.getElementById("rdFemale").checked;
+            var genderError = document.getElementById("genderError");
+            if(rdMale == false && rdFemale == false){
+              status = false;
+              genderError.innerHTML = "please select gender";
+            }
+            else
+              genderError.innerHTML = "";
+            return status;
+          }
+          function validateMobile(){
+            var status = true;
+            var mobile = document.getElementById("mobile").value;
+            var mobileError = document.getElementById("mobileError");
+            if(mobile.length==0){
+              status = false;
+              mobileError.innerHTML = "mobile number is required";
+            }
+            else if(mobile.length!=10){
+              status = false;
+              mobileError.innerHTML = "mobile must have 10 digit";
+            }
+            else if(isNaN(mobile)){
+              status = false;
+              mobileError.innerHTML = "Only digits are allowed";
+            }
+            else
+              mobileError.innerHTML  = "";
+            return status;
+
+          }
           function togglePassword(){
             var spanObj = document.getElementById("togglePassword");
             var passwordObj = document.getElementById("password");
@@ -74,7 +164,11 @@
           function validateForm(){
             var usernameStatus = validateUsername();
             var passwordStatus = validatePassword();
-            if(usernameStatus && passwordStatus)
+            var mobileStatus = validateMobile();
+            var genderStatus = validateGender();
+            var qualificationStatus = validateQualification();
+            var profileStatus = validateProfile();
+            if(usernameStatus && passwordStatus && mobileStatus && genderStatus && qualificationStatus && profileStatus)
               return true;
             return false;  
           }
