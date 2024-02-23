@@ -10,6 +10,7 @@
 <body>
     <div id="main"></div>
     <script>
+      !localStorage.getItem("user-list") && localStorage.setItem("user-list","[]");
       localStorage.setItem("product-list",JSON.stringify(getProductList()));  
       HeaderComponent();
       CreateCardContainerComponent(getProductList());
