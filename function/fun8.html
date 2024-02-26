@@ -1,0 +1,22 @@
+<script>
+    function f1(a){
+       document.write("<br>Inside F1|F1 executed...");
+       document.write("<br>a : "+a);
+       return function f2(b){
+         document.write("<br>Inside F2|F2 executed....");
+         document.write("<br> a : "+a+" b : "+b);
+         return function f3(c){
+            document.write("<br>Inside F3|F3 executed...");
+            document.write("<br>a : "+a+" b : "+b+" c : "+c);
+            return a * b * c;
+         }
+       }
+    }
+
+    let result = f1(2)(3)(4); // Javascript currying
+    document.write("<br>Result : "+result);
+    /*
+    let f2 = f1(1);
+    let f3 = f2(2);
+    f3(3);*/
+</script>

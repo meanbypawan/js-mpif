@@ -1,0 +1,31 @@
+<script>
+    /*
+       Java
+       class Addition{
+          int a;
+          int b;
+          Addition(int a, int b){
+            this.a = a;
+            this.b = b;
+          }
+          add(){
+            System.out.println("Addition : "+(this.a + this.b));
+          }
+       }
+    */
+     function Addition(a,b){
+        this.a = a;
+        this.b = b;
+        this.add = function(){
+            document.write("<br>Addition : "+(this.a + this.b));
+        }
+     }
+
+     let obj = new Addition(20,10);// obj : a=20,b=10
+     obj.add();
+</script>
+
+
+
+
+

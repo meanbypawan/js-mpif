@@ -1,0 +1,19 @@
+<script>
+    function Message(){
+       this.m1 = function(){
+          document.write("m1 executed....");
+       }
+       this.m2 = function(){
+          document.write("m2 executed.....");
+       }
+       this.m3 = function(){
+          document.write("m3 executed....");
+       }
+    }
+
+
+    let obj = new Message(); // obj : m1(), m2(), m3()
+    obj.m1();
+    obj.m2();
+    obj.m3();
+</script>

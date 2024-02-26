@@ -1,0 +1,40 @@
+<script>
+    const first = (n,callback)=>{
+        setTimeout(()=>{
+            console.log("Inside First|First executend..."+n);
+            callback(n+2);
+        },1000);
+    } 
+    const second = (n,secondWalaCallback)=>{
+        setTimeout(()=>{
+            console.log("Inside Second|Second executend..."+n);
+            secondWalaCallback(n+2);
+        },1500);
+    } 
+    const third = (n,thirdWalaCallback)=>{
+        setTimeout(()=>{
+            console.log("Inside Third|Third executend..."+n);
+            thirdWalaCallback(n+2);
+        },700);
+    } 
+    const fourth = (n)=>{
+        setTimeout(()=>{
+            console.log("Inside Fourth|Fourth executend..."+n);
+        },1200);
+    } 
+   // Pyramid of doom 
+   first(10,(n)=>{
+      second(n,(n)=>{
+        third(n,(n)=>{
+            fourth(n);
+        })
+      });
+   });
+</script>
+
+
+
+
+
+
+
