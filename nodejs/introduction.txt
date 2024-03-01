@@ -1,0 +1,56 @@
+Node.Js :-
+  1. It is developed by ryan dhal
+  2. Node.Js is not a programming language.
+  3. NodeJs is javascript runtime enviornment build upon the google chrome v8 engine.
+  4. NodeJs allows us to run javascript on server or outside the browser.
+  5. In NodeJs, Javascript is everywhere.
+  6. NodeJs application is superfast and highly scalable.
+      a. 33% fewer line of code
+      b. 40% fewer files
+      c. 2 * request/sec
+      d. 35% faster response time
+  7. NodeJs uses synchronous/blocking and asynchornous/non-blocking library both
+  8. NodeJs application is asynchronous in nature by default
+  9. NodeJs uses Single Thread Javascript Event Loop Model
+  --------------------------------------------------------------------------------
+  NodeJs libraray :-  
+
+                        Modules/Dependency
+                              |
+                     ----------------------------------
+                     |                                | 
+                  Application Level                Global(Envrionment)
+                     |                                 nodemon 
+                 ---------                             @angilar/cli
+                 |        |
+               Default   Installable       
+                 event    mysql
+                 fs       body-parser
+                 http     express
+                 url      cors
+                 path..   mongoose
+                          express-validator
+                          ...... 
+
+--------------------------------------------------------------
+    How to install Dependency
+      npm install mysql (Application Level)
+      npm install -g nodemon (Global/Envrionment)
+-------------------------------------------------------------
+  How to create node application
+   a. first create folder
+   b. navigate into folder and run npm init command 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
