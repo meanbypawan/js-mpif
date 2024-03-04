@@ -1,0 +1,5 @@
+NodeJs is single threaded
+NodeJs is javascript runtime enviornment.
+NodeJs application is superfast and highly scalable
+In NodeJs javascript is every where
+It is developed by ryan dhal.
