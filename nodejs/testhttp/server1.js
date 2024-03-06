@@ -6,4 +6,4 @@ const server = http.createServer((request,response)=>{
 
 server.listen(3000,()=>{
     console.log("Sever started...");
-})
+});
