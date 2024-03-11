@@ -1,3 +1,4 @@
+import { validationResult } from "express-validator";
 import User from "../model/user.model.js";
 
 export const signIn = (request,response,next)=>{
@@ -13,11 +14,16 @@ export const signIn = (request,response,next)=>{
     })
 }
 export const signUp = (request,response,next)=>{
+    const errors = validationResult(request);
+    if(!errors.isEmpty())
+      return response.status(401).json({error: "Bad request", errorMessage: errors.array()});
+
     let {username,email,password,contact} = request.body;
     let user = new User(null,username,email,password,contact);
     user.signUp().then(result=>{
       return response.status(200).json({message: "Sign up success...."});
     }).catch(err=>{
+     console.log(err); 
      return response.status(500).json({error: "Insernal Server Error.."});
     });
  }
