@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/dbConfig.js";
-
+import bcrypt from "bcryptjs";
 const User = sequelize.define("user",{
     id:{
         type: DataTypes.INTEGER,
@@ -19,6 +19,11 @@ const User = sequelize.define("user",{
     password:{
         type: DataTypes.STRING,
         allowNull: false,
+        set(value) {
+           let saltKey = bcrypt.genSaltSync(10);
+           let encryptedPassword = bcrypt.hashSync(value,saltKey); 
+           this.setDataValue('password', encryptedPassword);
+        }
     },
     contact: DataTypes.STRING
 });
@@ -31,6 +36,9 @@ sequelize.sync()
     console.log("User table not created..");
 });
 
+User.checkPassword = (originalPassword,encryptedPassword)=>{
+    return bcrypt.compareSync(originalPassword,encryptedPassword);
+}
 export default User;
 
 /*
