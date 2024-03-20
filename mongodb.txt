@@ -1,0 +1,95 @@
+db.createCollection('users')
+  
+  Database
+    |
+   Collection
+     a. Capped collection  (fixed in size and holding limited doc)
+     b. Uncapped collection 
+   
+   db.users.insert({
+     name: "A",
+     age: 25,
+     salary: 5000
+   })
+ -------------------------------------------------------------
+   Creating collection
+     db.createCollection("users")
+   
+   Creating capped collection
+     db.createCollection("users",{capped: true,size:1000,max:4})
+       
+   Inserting Single Record
+     db.users.insertOne({}) 
+     
+   Inserting Multiple Record
+     db.users.insertMany([{},{},{}])   
+     
+   Selecting Record
+   db.employees.find() => select * from employees
+   
+   // select * from employees where age = 32
+   db.employees.find({age: 32})
+   
+   // select name,age,salary from employees where age = 32
+   db.employees.find({age: 32},{name:1,age:1,salary:1,_id:0,gender:0})
+   
+   // Fetch user record whose salary is greater 50000
+   select * from user where salary >=50000
+   
+   Operator
+     $gt,$lt,$gte,$lte,$eq,$nq,$and,$or,$in
+     db.employees.find({salary:{$gt:50000}})
+    
+    select * from employees where salary >=50000 and salary <=70000
+    db.employees.find({salary:{gte:50000}, salary:{$lte:70000}})
+    
+    db.employees.find({
+      $and:[{salary:{$gte:50000}},{salary:{$lte:70000}}]
+    })
+    
+    db.employees.find({
+      $or:[{
+        salary:{$gt:80000}
+      },{gender:"female"}]
+    })
+    
+    
+    db.employees.find({
+      $or:[{salary:{$gt:65000,$lte:85000}},{gender:'female'}]
+    })
+    
+    db.employees.find({
+      $or:[
+        {gender: 'female'},
+        {
+          $and:[{salary: {$gt:65000}},{salary:{$lte: 85000}}]
+        } 
+      ]
+    })
+    
+   db.employees.insertOne({ name: 'leesha', age: 29, salary: 90000, gender: 'female' }) 
+     
+   // Getting highest salary value
+   db.employees.find({},{_id:0}).sort({salary:-1}).toArray()[0].salary
+   
+   db.employees.find({
+     salary: db.employees.find({},{_id:0}).sort({salary:-1}).toArray()[0].salary
+   })
+   
+   db.employees.find({
+     salary: {$lt: db.employees.find({},{_id:0}).sort({salary:-1}).toArray()[0].salary}
+   }).sort({salary:-1})
+   
+   
+   db.employees.find({
+     salary: db.employees.find({ salary: { $lt: db.employees.find({}, { _id: 0 }).sort({ salary: -1 }).toArray()[0].salary } }).sort({ salary: -1 }).toArray()[0].salary
+   })
+     
+     
+     
+     
+     
+     
+     
+     
+     
