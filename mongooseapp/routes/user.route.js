@@ -1,7 +1,8 @@
 import express from "express";
-import { signIn, signUp } from "../controller/user.controller.js";
+import { getProfile, signIn, signUp, updateProfile } from "../controller/user.controller.js";
 import {body} from "express-validator";
-
+import multer from "multer";
+const upload = multer({dest: "public/images/"});
 const router = express.Router();
 
 // http://localhost:3000/user/signup
@@ -14,4 +15,14 @@ body("contact","contact is required").notEmpty(),
 body("contact","only digit allowed").isNumeric(),signUp);
 
 router.post("/signin",signIn);
+router.post("/update-profile",upload.single("profile"),updateProfile);
+router.get("/profile/:userId",getProfile);
 export default router;
+
+
+
+
+
+
+
+

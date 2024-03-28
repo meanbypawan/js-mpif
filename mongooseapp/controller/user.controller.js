@@ -2,7 +2,32 @@ import { validationResult } from "express-validator";
 import { User } from "../model/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-
+export const getProfile = (request,response,next)=>{
+    let userId = request.params.userId;
+    User.findOne({_id: userId})
+    .then(result=>{
+        result.profile = "http://localhost:3000/images/"+result.profile;
+        return response.status(200).json({user: result});
+    }).catch(err=>{
+        return response.status(500).json({error: "Internal Server Error"});
+    })
+}
+export const updateProfile = (request,response,next)=>{
+    let userId = request.body.userId;
+    let fileName = "";
+    if(request.file)
+      fileName = request.file.filename;
+    
+    User.updateOne({_id: userId},{
+        $set:{profile: fileName}
+    }).then(result=>{
+        if(result.modifiedCount)
+          return response.status(200).json({message: "Profile updated..."});
+        return response.status(401).json({error: "Bad request (Id not found)"});  
+    }).catch(err=>{
+        return response.status(500).json({message: "Internal Server Error"});
+    });  
+}
 export const signIn = async (request, response, next) => {
     try {
         let { email, password } = request.body;

@@ -3,7 +3,11 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     username:{
         type: String,
-        trim: true
+        trim: true,
+        set: function(v){
+            return "Hi "+v;
+        },
+        get: updateName
     },
     email:{
         type: String,
@@ -16,10 +20,16 @@ const userSchema = new mongoose.Schema({
     contact:{
         type: Number,
         trim: true
+    },
+    profile:{
+        type: String,
+        trim: true
     }
-},{versionKey: false});
+}, { toJSON: { getters: true } },{versionKey: false});
 
-
+function updateName(username){
+    return "Hello "+username;
+}
 export const User = mongoose.model("user",userSchema);
 /*
   User.create({})
