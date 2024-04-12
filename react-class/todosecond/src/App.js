@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import AddTask from "./components/AddTask";
 import TaskCard from "./components/TaskCard";
 function App(){
-
   const [taskList,setTaskList] = useState(Data);
   const [defaultTaskStatus,setDefaultTaskStatus] = useState("active");
   
