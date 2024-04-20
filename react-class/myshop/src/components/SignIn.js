@@ -3,8 +3,11 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Api from "./WebApi";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../redux-config/UserSlice";
 function SignIn(){
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const emailInput = useRef();
     const passwordInput = useRef();
     
@@ -15,15 +18,12 @@ function SignIn(){
           let response = await axios.post(Api.signInApi,{email,password});
           let user = response.data.user;
           delete user.password;
-          saveUser(user);
+          dispatch(setCurrentUser(user));
           navigate("/home");
         }
         catch(err){
             toast.error("Error in Sign in");
         }
-    }
-    const saveUser = (user)=>{
-        sessionStorage.setItem("current-user",JSON.stringify(user));
     }
     return <>
      <ToastContainer/>

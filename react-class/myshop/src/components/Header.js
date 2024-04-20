@@ -1,4 +1,14 @@
+import { useDispatch } from "react-redux";
+import { signOut } from "../redux-config/UserSlice";
+import { Link, useNavigate } from "react-router-dom";
+
 function Header() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleSignOut = ()=>{
+      dispatch(signOut());
+      navigate("/");
+    }
     return <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a className="navbar-brand" href="#">My-Shop</a>
@@ -16,10 +26,10 @@ function Header() {
                         <a className="nav-link" href="#">Categories</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Cart <span className="sr-only">(current)</span></a>
+                        <Link to="/cart" className="nav-link">Cart <span className="sr-only">(current)</span></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Sign out</a>
+                        <a onClick={handleSignOut} className="nav-link" href="#">Sign out</a>
                     </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
