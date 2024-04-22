@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "./Header";
 import axios from "axios";
 import Api from "./WebApi";
 import { ToastContainer, toast } from "react-toastify";
 import Product from "./Product";
+import { ProductContext } from "../App";
 function Home(){
-  const [productList,setProductList] = useState([]);
+  const {productList,setProductList} = useContext(ProductContext);
+  
   useEffect(()=>{
     loadProducts();
   },[]);
@@ -22,7 +24,6 @@ function Home(){
   }
   return <>
     <ToastContainer/>
-    <Header/>
     <div className="container mt-5">
         <div className="row">
           {productList.map((product,index)=><Product product={product} key={index}/>)}

@@ -28,6 +28,9 @@ const slice = createSlice({
           for(let items of state.cartItems){
             state.totalAmount = state.totalAmount + items["products.price"] * items.qty;
          }
+        },
+        removeFromCart: (state,action)=>{
+          state.cartItems.splice(action.payload.index,1);
         }
     },
     extraReducers:(builder)=>{
@@ -50,5 +53,5 @@ const slice = createSlice({
     }
 });
 
-export const {updateQty} = slice.actions;
+export const {updateQty, removeFromCart} = slice.actions;
 export default slice.reducer;
